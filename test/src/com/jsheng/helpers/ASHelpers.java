@@ -1,6 +1,7 @@
 package com.jsheng.helpers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ASHelpers {
@@ -54,7 +55,7 @@ public class ASHelpers {
         System.out.println(s + ": unique");
     }
 
-    public static String isPalindrome(String word) {
+    public static Boolean isPalindrome(String word) {
         char[] myWord = word.toCharArray();
         int end = myWord.length - 1;
         int start = 0;
@@ -66,7 +67,7 @@ public class ASHelpers {
                     start++;
                 } else {
                     if (myWord[start] != myWord[end]) {
-                        return "not found";
+                        return false;
                     }
                     start++;
                     end--;
@@ -80,20 +81,20 @@ public class ASHelpers {
                     start++;
                 } else {
                     if (myWord[start] != myWord[end]) {
-                        return "not found";
+                        return false;
                     }
                     start++;
                     end--;
                 }
             }
         }
-        return myWord.toString();
+        return true;
     }
 
     // Insert, remove, replace, can only be one or more or none
     public static void compareStringEdits(String strOne, String strTwo) {
 
-        if ((strOne.length() > (strTwo.length() + 1)) || (strTwo.length() > (strOne.length() +1))) {
+        if ((strOne.length() > (strTwo.length() + 1)) || (strTwo.length() > (strOne.length() + 1))) {
             System.out.println(strOne + " -> " + strTwo + ": false");
             return;
         }
@@ -159,7 +160,7 @@ public class ASHelpers {
                 matrix[last-offset][first] = matrix[last][last-offset];
                 // right -> bottom
                 matrix[last][last-offset] = matrix[i][last];
-                // top - right
+                // top -> right
                 matrix[i][last] = top;
 
                 for(int k = 0; k < n; k++) {
@@ -204,5 +205,29 @@ public class ASHelpers {
     public static void zeroMatrix(int[][] matrix, int m, int n) {
 
 
+    }
+
+    public static void isPerm(String left, String right) {
+        HashMap<Character, Integer> s1 = new HashMap<Character, Integer>();
+        HashMap<Character, Integer> s2 = new HashMap<Character, Integer>();
+
+        putMap(left, s1);
+        putMap(right, s2);
+        if (s1.equals(s2)) {
+            System.out.println("[" + left + "," + right + "] are permutations of each other.");
+        }
+        else {
+            System.out.println("[" + left + "," + right + "] are not permutations of each other.");
+        }
+    }
+
+    public static void putMap(String s, HashMap<Character, Integer> s1) {
+        for (char c : s.toCharArray()) {
+            if (s1.containsKey(c)) {
+                s1.put(c, s1.get(c) + 1);
+            } else {
+                s1.put(c,1);
+            }
+        }
     }
 }

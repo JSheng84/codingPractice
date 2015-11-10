@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.jsheng.helpers.ASHelpers;
+import com.jsheng.helpers.Pair;
 import com.jsheng.playground.StringPermutation;
 
 public class Chp1ArraysAndString extends AbstractQuestionsTemplate {
@@ -26,11 +27,14 @@ public class Chp1ArraysAndString extends AbstractQuestionsTemplate {
         }
     }
 
-    public void question1_2() {
+    public void question1_2(List<Pair<String, String>> myList) {
         startQ(1.2);
         System.out.println("Question: Given two strings, write a method to decide"
                 + " if one is a permutation of the other\n");
-        System.out.println("See SinBpermutation.java for solution.");
+
+        for(Pair<String,String> s : myList) {
+            ASHelpers.isPerm(s.getLeft(), s.getRight());
+        }
     }
 
     public void question1_3(String input,
@@ -60,7 +64,7 @@ public class Chp1ArraysAndString extends AbstractQuestionsTemplate {
         ArrayList<String> perms = StringPermutation.permutation(lowerInput);
         HashMap<String, Integer> myPerms = new HashMap<String, Integer>();
         for (String i : perms) {
-            if (ASHelpers.isPalindrome(i) != "not found") {
+            if (ASHelpers.isPalindrome(i)) {
                 if (myPerms.containsKey(i)) {
                     myPerms.put(i, myPerms.get(i) + 1);
                 }
@@ -167,16 +171,23 @@ public class Chp1ArraysAndString extends AbstractQuestionsTemplate {
 
     // ***** Main *****
     public static void main(String[] args) {
-        System.out.println("**** Strings and Arrays questions ****");
-        Chp1ArraysAndString questions = new Chp1ArraysAndString();
-        questions.question1_1(new String[]{"cat", "hat", "piccolo", "fantastic"});
-        questions.question1_2();
-        questions.question1_3("\"Mr John Smith    \"", 13, "%20");
-        questions.question1_4("Taco Cat");
-        questions.question1_5("pale", Arrays.asList("pale", "pales", "laep", "dinasour", "pal", "bale"));
-        questions.question1_6(Arrays.asList("aabccccaaa", "abc", "easyasonetwothree"));
-        questions.question1_7(5);
-        questions.question1_8(5, 4);
-        questions.question1_9();
+
+    	// ***** Constants *****
+    	ArrayList<Pair<String,String>> q2 = new ArrayList<Pair<String,String>>();
+    	q2.add(new Pair<String,String>("tac", "cat"));
+    	q2.add(new Pair<String,String>("furniture", "turniefur"));
+    	q2.add(new Pair<String,String>("rest", "resturant"));
+    	q2.add(new Pair<String,String>("dog", "cat"));
+    System.out.println("**** Strings and Arrays questions ****");
+    Chp1ArraysAndString questions = new Chp1ArraysAndString();
+    questions.question1_1(new String[]{"cat", "hat", "piccolo", "fantastic"});
+    questions.question1_2(q2);
+    questions.question1_3("\"Mr John Smith    \"", 13, "%20");
+    questions.question1_4("Taco Cat");
+    questions.question1_5("pale", Arrays.asList("pale", "pales", "laep", "dinasour", "pal", "bale"));
+    questions.question1_6(Arrays.asList("aabccccaaa", "abc", "easyasonetwothree", "eeeeappeezzee"));
+    questions.question1_7(5);
+    questions.question1_8(5, 4);
+    questions.question1_9();
     }
 }

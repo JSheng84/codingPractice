@@ -42,24 +42,24 @@ public class Question {
 
         System.out.println(left);
         System.out.println(right);
-         buildTreeMap(head, left, right);
-         return head;
+        buildTreeMap(head, left, right);
+        return head;
     }
 
-    public static void buildTreeMap(Node<Integer> head,
+    public static void buildTreeMap(Node<Integer> node,
                     HashMap<Integer, Integer> left,
                     HashMap<Integer, Integer> right) {
-         if (left.containsKey(head._id)) {
-             head._left = new Node<Integer>(left.get(head._id));
+         if (left.containsKey(node._id)) {
+             node._left = new Node<Integer>(left.get(node._id));
          }
-         if (right.containsKey(head._id)) {
-             head._right = new Node<Integer>(right.get(head._id));
+         if (right.containsKey(node._id)) {
+             node._right = new Node<Integer>(right.get(node._id));
          }
-         if (head._left != null) {
-             buildTreeMap(head._left, left, right);
+         if (node._left != null) {
+             buildTreeMap(node._left, left, right);
          }
-         if (head._right != null) {
-             buildTreeMap(head._right, left, right);
+         if (node._right != null) {
+             buildTreeMap(node._right, left, right);
          }
     }
 
@@ -74,6 +74,7 @@ public class Question {
         relation.add(new Relation(80, 50, false));
         relation.add(new Relation(50, false));
         relation.add(new Relation(20, 50, true));
+        relation.add(new Relation(8, 17, true));
 
         BTreePrinter.printNode(buildTree(relation));
 
