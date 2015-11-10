@@ -1,0 +1,30 @@
+package com.jsheng.playground;
+
+import java.util.Scanner;
+
+public class IsPrime {
+    public static boolean isPrime(int number) {
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number%i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.printf("Input an integer: ");
+        int number = input.nextInt();
+
+        for (int i = 2; i < number; i++) {
+            boolean check = isPrime(i);
+            if (check) {
+                System.out.println(i);
+            }
+        }
+        input.close();
+
+        // ASHelpers.printPrimes(1000);
+    }
+}
